@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 import { useReducer } from 'react'
-import { action, TraductorState } from '../types'
+import { action, FromLanguage, Language, TraductorState } from '../types'
 
 const InitialState = {
   fromLanguage: 'auto',
@@ -13,6 +13,9 @@ const InitialState = {
 const reducer = (state: TraductorState, action: action) => {
   const { type } = action
   if (type === 'INTERCHANGE_LANGUAGE') {
+    if (state.fromLanguage === 'auto') {
+      return { ...state }
+    }
     return { ...state, fromLanguage: state.toLanguage, toLanguage: state.fromLanguage }
   }
 
@@ -34,18 +37,18 @@ const reducer = (state: TraductorState, action: action) => {
   return state
 }
 
-export function useStore () {
+export function useStore() {
   const [{ fromLanguage, toLanguage, fromText, result, loading }, dispatch] = useReducer(reducer, InitialState)
 
   const interchangeLanguage = () => {
     dispatch({ type: 'INTERCHANGE_LANGUAGE' })
   }
 
-  const setFromLanguage = (payload: string) => {
+  const setFromLanguage = (payload: FromLanguage) => {
     dispatch({ type: 'INTERCHANGE_LANGUAGE', payload })
   }
 
-  const setToLanguage = (payload: string) => {
+  const setToLanguage = (payload: Language) => {
     dispatch({ type: 'INTERCHANGE_LANGUAGE', payload })
   }
 

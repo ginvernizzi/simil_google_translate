@@ -3,7 +3,8 @@
 import React, { useReducer } from 'react'
 import './App.css'
 import { useStore } from './hooks/store'
-import { Button } from 'react-bootstrap'
+import { Button, Container, Row, Col } from 'react-bootstrap'
+import InterchangeIcon from './assets/InterchangeIcon'
 
 const App = () => {
   const { fromLanguage, toLanguage, interchangeLanguage } = useStore()
@@ -13,14 +14,22 @@ const App = () => {
   }
 
   return (
-    <div className='App'>
+    <Container className='Conatoner'>
       <h1>gonza translate</h1>
-      <div style={{ display: 'flex', gap: '5px' }}>
-        <div>{fromLanguage} </div>
-        <Button onClick={onHandleInterchange}>Interchange</Button>
-        <div>{toLanguage} </div>
-      </div>
-    </div>
+      <Row>
+        <Col>
+          <h2>From</h2>
+          {fromLanguage}
+        </Col>
+        <Col>
+          <InterchangeIcon onHandleInterchange={onHandleInterchange} />
+        </Col>
+        <Col>
+          <h3>to</h3>
+          {toLanguage}
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
