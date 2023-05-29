@@ -37,7 +37,7 @@ const reducer = (state: TraductorState, action: action) => {
   return state
 }
 
-export function useStore() {
+export function useStore () {
   const [{ fromLanguage, toLanguage, fromText, result, loading }, dispatch] = useReducer(reducer, InitialState)
 
   const interchangeLanguage = () => {
@@ -45,19 +45,21 @@ export function useStore() {
   }
 
   const setFromLanguage = (payload: FromLanguage) => {
-    dispatch({ type: 'INTERCHANGE_LANGUAGE', payload })
+    console.log('set from Leng method')
+    dispatch({ type: 'SET_FROM_LANGUAGE', payload })
   }
 
   const setToLanguage = (payload: Language) => {
-    dispatch({ type: 'INTERCHANGE_LANGUAGE', payload })
+    console.log('set to Leng method')
+    dispatch({ type: 'SET_TO_LANGUAGE', payload })
   }
 
   const setFromText = (payload: string) => {
-    dispatch({ type: 'INTERCHANGE_LANGUAGE', payload })
+    dispatch({ type: 'SET_FROM_TEXT', payload })
   }
 
   const setResult = (payload: string) => {
-    dispatch({ type: 'INTERCHANGE_LANGUAGE', payload })
+    dispatch({ type: 'SET_RESULT', payload })
   }
 
   return {
