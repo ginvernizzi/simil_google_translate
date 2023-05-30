@@ -37,7 +37,7 @@ const reducer = (state: TraductorState, action: action) => {
   return state
 }
 
-export function useStore () {
+export function useStore() {
   const [{ fromLanguage, toLanguage, fromText, result, loading }, dispatch] = useReducer(reducer, InitialState)
 
   const interchangeLanguage = () => {
